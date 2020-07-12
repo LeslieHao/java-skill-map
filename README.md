@@ -1,4 +1,3 @@
-# java-skill-map
 * 计算机基础
     * 操作系统
     * 数据结构
@@ -33,7 +32,10 @@
 * mysql
     * 索引
     * 隔离级别
-    * 分库分表（sharding-jdbc 实现）
+    * 分库分表
+        * sharding-jdbc
+        * mycat
+        * shardbatis
 * redis
 * mybatis
 * spring
@@ -65,7 +67,4 @@
 
       
       
-
-
-
 
