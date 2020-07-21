@@ -16,7 +16,9 @@
         * LinkedList
         * HashMap
         * ConcurrentHashMap
-        * LinkedBlockingQueue
+        * CopyOnWriteArrayList
+        * LinkedBlockingDeque
+        * ArrayBlockingQueue
     * 异步编程
         * 并发容器
             * ConcurrentHashMap
@@ -28,6 +30,8 @@
         * 锁
         * ThreadLocal
         * CAS
+        * AQS
+        * Semaphore
     * IO
 * mysql
     * 索引
@@ -62,8 +66,7 @@
     * id生成器方案
     * 网关（限流、熔断、降级）
     * 高并发高可用？
-
-       
+    * 缓存一致性解决方案
 
       
       
