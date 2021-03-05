@@ -1,4 +1,4 @@
-package java.condition;
+package javabase.juc.consumer;
 
 import lombok.SneakyThrows;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author HaoHao
  * @date 2021/3/3 3:48 下午
  */
-public class Store {
+public class ReentrantLockStore {
 
     /**
      * 库存
@@ -40,16 +40,16 @@ public class Store {
                     System.out.println("仓库已满~ 生产者休息!");
                     notFull.await();
                 }
+                //增加库存
+                Thread.sleep(1000);
+                int i = repertory.incrementAndGet();
+                System.out.println("生产一个商品,当前库存:" + i);
+                // 唤醒在等待上货的线程
+                notEmpty.signalAll();
             } finally {
                 lock.unlock();
             }
-            //增加库存
-            Thread.sleep(1000);
-            int i = repertory.incrementAndGet();
-            System.out.println("生产一个商品,当前库存:" + i);
-            // 唤醒在等待上货的线程
-            notEmpty.signalAll();
-            lock.unlock();
+
         }
     }
 
@@ -67,17 +67,16 @@ public class Store {
                     // 仓库空了
                     System.out.println("仓库已空~ 买东西的等会儿!");
                     notEmpty.await();
-                }
+                }  //增加库存
+                Thread.sleep(1000);
+                int i = repertory.decrementAndGet();
+                System.out.println("卖出一个商品,当前库存:" + i);
+                // 唤醒等待生产的线程
+                notFull.signalAll();
             } finally {
                 lock.unlock();
             }
-            //增加库存
-            Thread.sleep(1000);
-            int i = repertory.decrementAndGet();
-            System.out.println("卖出一个商品,当前库存:" + i);
-            // 唤醒等待生产的线程
-            notFull.signalAll();
-            lock.unlock();
+
         }
     }
 }
