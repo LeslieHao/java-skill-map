@@ -14,6 +14,8 @@ public class SynchronizeStore {
 
     public static final int MAX_REPERTORY = 10;
 
+    public static final int a = 1;
+
     /**
      * 生产者
      */
@@ -45,7 +47,6 @@ public class SynchronizeStore {
      * 消费者
      */
     static class Consumer extends Thread {
-
         @SneakyThrows
         @Override
         public void run() {
@@ -56,7 +57,7 @@ public class SynchronizeStore {
                         System.out.println("仓库已空~ 买东西的等会儿!");
                         REPERTORY.wait();
                     }
-                    //增加库存
+                    // 增加库存
                     int i = REPERTORY.decrementAndGet();
                     System.out.println("卖出一个商品,当前库存:" + i);
                     Thread.sleep(10);
