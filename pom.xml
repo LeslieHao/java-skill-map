@@ -14,6 +14,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>scf-plugin</artifactId>
+            <version>8.1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.56</version>

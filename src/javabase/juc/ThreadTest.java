@@ -8,7 +8,6 @@ import lombok.SneakyThrows;
  */
 public class ThreadTest {
 
-
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new Runnable() {
             @SneakyThrows
