@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: client
+
+server:
+  port: 8000
+
+rpc:
+  service:
+    version: 1.0
+    url: dubbo://127.0.0.1:23456
