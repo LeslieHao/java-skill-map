@@ -5,7 +5,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 使用反射(底层也使用了字节码生成代理类的class)
+ * 底层使用字节码生成代理类(其实就是把静态代理模式代码 在运行时动态生成)
+ * cglib javaassist 底层实际都是一样的
+ *
+ * 真实调用使用反射 method.invoke
  *
  * 必须基于接口
  * 生成的proxy 继承了proxy,由于java的单继承,所有只能基于接口
