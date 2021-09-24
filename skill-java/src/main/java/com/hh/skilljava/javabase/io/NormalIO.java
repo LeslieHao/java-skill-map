@@ -2,14 +2,13 @@ package com.hh.skilljava.javabase.io;
 
 import lombok.SneakyThrows;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.*;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 同步阻塞IO 实现服务端
@@ -19,22 +18,24 @@ import java.util.concurrent.*;
  */
 public class NormalIO {
 
-    public static void main(String[] args) throws IOException {
-        NormalServer server = new NormalServer(new ServerSocket(0));
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        NormalServer server = new NormalServer(new ServerSocket(8888));
         server.start();
         Socket client = new Socket(InetAddress.getLocalHost(), server.getPort());
-        PrintWriter writer = new PrintWriter(client.getOutputStream());
-        writer.println("hello~");
-        writer.flush();
+        OutputStream outputStream = client.getOutputStream();
+        for (int i = 0; i < 10; i++) {
+            outputStream.write(1);
+        }
     }
 
     static class NormalServer extends Thread {
 
         private final ServerSocket serverSocket;
 
-        Executor serverExecutor =
+        ThreadPoolExecutor serverExecutor =
                 new ThreadPoolExecutor(17, 100, 1000, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(1000), r -> {
-                    Thread thread = new Thread();
+                    Thread thread = new Thread(r);
                     thread.setName("server worker");
                     return thread;
                 });
@@ -78,7 +79,7 @@ public class NormalIO {
     }
 
 
-    static class RequestHandler extends Thread {
+    static class RequestHandler implements Runnable {
 
         private final Socket socket;
 
@@ -91,9 +92,12 @@ public class NormalIO {
         public void run() {
             // 去读客户端传来的数据
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            InputStream inputStream = socket.getInputStream();
+            byte[] bytes = new byte[5];
             while (true) {
-                reader.lines().forEach(System.out::println);
-                Thread.sleep(1000);
+                Thread.sleep(300);
+                int read = inputStream.read(bytes);
+                System.out.println(read);
             }
         }
     }

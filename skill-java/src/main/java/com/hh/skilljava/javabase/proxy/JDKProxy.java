@@ -6,7 +6,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * 底层使用字节码生成代理类(其实就是把静态代理模式代码 在运行时动态生成)
- * cglib javaassist 底层实际都是一样的
+ * 和cglib(底层使用asm) 底层实际都是一样的
  *
  * 真实调用使用反射 method.invoke
  *
