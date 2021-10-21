@@ -1,4 +1,4 @@
-package com.hh.simplepc;
+package com.hh.simplerpc;
 
 /**
  * @author HaoHao

@@ -1,4 +1,4 @@
-package com.hh.simplepc.server;
+package com.hh.simplerpc.rpc.nio.server;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,13 +16,13 @@ import java.util.Set;
  * @date 2021/9/14 9:24 下午
  */
 @Slf4j
-public class Server {
+public class NormalServer {
 
     private final Selector selector;
 
     public static final int PORT = 21888;
 
-    public Server(int port) throws IOException {
+    public NormalServer(int port) throws IOException {
         log.info("server init,port:" + port);
         // open a channel
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
