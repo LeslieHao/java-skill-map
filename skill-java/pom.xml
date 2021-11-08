@@ -18,7 +18,13 @@
 
     <dependencies>
 
-<!--        <dependency>-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
+        </dependency>
+
+        <!--        <dependency>-->
 <!--            <groupId>org.apache.skywalking</groupId>-->
 <!--            <artifactId>scf-plugin</artifactId>-->
 <!--            <version>8.1.0</version>-->

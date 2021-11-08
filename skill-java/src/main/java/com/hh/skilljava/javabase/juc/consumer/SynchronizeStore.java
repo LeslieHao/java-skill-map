@@ -5,6 +5,8 @@ import lombok.SneakyThrows;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * Synchronize 实现生产消费模型
+ *
  * @author HaoHao
  * @date 2021/3/5 2:56 下午
  */
@@ -13,8 +15,6 @@ public class SynchronizeStore {
     private static final AtomicInteger REPERTORY = new AtomicInteger(0);
 
     public static final int MAX_REPERTORY = 10;
-
-    public static final int a = 1;
 
     /**
      * 生产者
@@ -26,14 +26,16 @@ public class SynchronizeStore {
         public void run() {
             for (; ; ) {
                 Thread.sleep(50);
-                synchronized (REPERTORY) {
-                    while (REPERTORY.get() >= MAX_REPERTORY) {
+                while (REPERTORY.get() >= MAX_REPERTORY) {
+                    synchronized (REPERTORY) {
                         // 仓库满了 停止生产
                         System.out.println("仓库已满~ 生产者休息!");
                         REPERTORY.wait();
                     }
-                    //增加库存
-                    Thread.sleep(100);
+                }
+                //增加库存
+                Thread.sleep(100);
+                synchronized (REPERTORY) {
                     int i = REPERTORY.incrementAndGet();
                     System.out.println("生产一个商品,当前库存:" + i);
                     // 唤醒等待的线程
@@ -57,19 +59,22 @@ public class SynchronizeStore {
                         System.out.println("仓库已空~ 买东西的等会儿!");
                         REPERTORY.wait();
                     }
-                    // 增加库存
+                }
+                synchronized (REPERTORY) {
+                    // 消费
                     int i = REPERTORY.decrementAndGet();
                     System.out.println("卖出一个商品,当前库存:" + i);
                     Thread.sleep(10);
                     //唤醒等待的线程
-                    REPERTORY.notifyAll();
+                    REPERTORY.notify();
                 }
             }
         }
+
     }
 
     public static void main(String[] args) {
-        new Consumer().start();
         new Producer().start();
+        new Consumer().start();
     }
 }
