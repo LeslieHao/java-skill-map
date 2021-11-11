@@ -1,4 +1,4 @@
-package com.hh.skilljava.javabase.juc;
+package com.hh.skilljava.javabase.juc.threadtool;
 
 import java.util.Map;
 import java.util.TreeMap;

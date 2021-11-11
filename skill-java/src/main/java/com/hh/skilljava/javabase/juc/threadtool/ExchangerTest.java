@@ -1,4 +1,4 @@
-package com.hh.skilljava.javabase.juc;
+package com.hh.skilljava.javabase.juc.threadtool;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import java.util.concurrent.Exchanger;
  * @date 2021/11/8 4:06 下午
  */
 @Slf4j
-public class ParamInThread {
+public class ExchangerTest {
 
     interface CallBackHelper {
         String callBack(String param);
