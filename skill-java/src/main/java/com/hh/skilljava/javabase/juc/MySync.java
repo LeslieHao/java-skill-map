@@ -1,5 +1,7 @@
 package com.hh.skilljava.javabase.juc;
 
+import lombok.SneakyThrows;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.concurrent.TimeUnit;
@@ -172,6 +174,17 @@ import java.util.concurrent.locks.Condition;
  */
 public class MySync {
 
+    // The sync object does all the hard work. We just forward to it.
+    private final Sync sync = new Sync();
+
+    public void lock() {
+        sync.acquire(1);
+    }
+
+    public void unlock(){
+        sync.release(1);
+    }
+
 
     // Our internal helper class
     private static class Sync extends AbstractQueuedSynchronizer {
@@ -184,7 +197,7 @@ public class MySync {
             return getState() == 1;
         }
 
-        // Acquires the lock if state is zero
+        // 自定义获取锁的规则
         @Override
         public boolean tryAcquire(int acquires) {
             assert acquires == 1; // Otherwise unused
@@ -195,7 +208,7 @@ public class MySync {
             return false;
         }
 
-        // Releases the lock by setting state to zero
+        // 自定义释放锁的规则
         @Override
         protected boolean tryRelease(int releases) {
             assert releases == 1; // Otherwise unused
@@ -220,20 +233,13 @@ public class MySync {
         }
     }
 
-    // The sync object does all the hard work. We just forward to it.
-    private final Sync sync = new Sync();
 
-    public void lock() {
-        sync.acquire(1);
-    }
+
 
     public boolean tryLock() {
         return sync.tryAcquire(1);
     }
 
-    public void unlock() {
-        sync.release(1);
-    }
 
     public Condition newCondition() {
         return sync.newCondition();
@@ -256,4 +262,26 @@ public class MySync {
         return sync.tryAcquireNanos(1, unit.toNanos(timeout));
     }
 
+
+    public static void main(String[] args) throws InterruptedException {
+        MySync lock = new MySync();
+        new Thread(new Runnable() {
+            @SneakyThrows
+            @Override
+            public void run() {
+                lock.lock();
+                Thread.sleep(2000);
+                lock.unlock();
+                System.out.println("t1 unlock");
+            }
+        }).start();
+        Thread.sleep(50);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                System.out.println("T2 lock suc");
+            }
+        }).start();
+    }
 }

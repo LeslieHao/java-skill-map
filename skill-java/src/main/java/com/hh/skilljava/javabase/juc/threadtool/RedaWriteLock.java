@@ -11,35 +11,23 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class RedaWriteLock {
 
-    private final Map<String, String> m = new TreeMap<>();
-    private final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
-    private final Lock r = rwl.readLock();
-    private final Lock w = rwl.writeLock();
+    private static final Map<String, String> m = new TreeMap<>();
+    private static final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
+    private static final Lock r = rwl.readLock();
+    private static final Lock w = rwl.writeLock();
 
-    public String get(String key) {
-        r.lock();
-        try {
-            return m.get(key);
-        } finally {
-            r.unlock();
-        }
-    }
 
-    public String  put(String key, String value) {
+    public static void main(String[] args) throws InterruptedException {
+        // 支持锁降级(即统一线程可以先持有写锁 再获取读锁),不支持锁升级
         w.lock();
-        try {
-            return m.put(key, value);
-        } finally {
-            w.unlock();
-        }
-    }
+        w.unlock();
 
-    public void clear() {
-        w.lock();
-        try {
-            m.clear();
-        } finally {
-            w.unlock();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                r.lock();
+                r.unlock();
+            }
+        }).start();
     }
 }
