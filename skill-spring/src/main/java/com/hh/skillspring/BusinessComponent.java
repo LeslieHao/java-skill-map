@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class BusinessComponent {
 
-    @LogAspect.LogAspectAnnotation
     public void doBiz() {
 
     }

@@ -27,7 +27,7 @@ public class ScheduledThreadPool {
             public void run() {
                 System.out.println("task run ~");
             }
-        }, 20000, TimeUnit.MILLISECONDS);
+        }, 5000, TimeUnit.MILLISECONDS);
 
         //scheduledExecutorService.schedule(new Runnable() {
         //    @Override
