@@ -77,6 +77,7 @@ public class FutureTest {
             }
         }, THREAD_POOL_ONE);
         String s = future2.get();
+        System.out.println(s);
     }
 
     public static void m5() throws ExecutionException, InterruptedException {

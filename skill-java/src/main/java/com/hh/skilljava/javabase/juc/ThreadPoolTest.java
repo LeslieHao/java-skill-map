@@ -3,9 +3,10 @@ package com.hh.skilljava.javabase.juc;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.ref.WeakReference;
-import java.util.Date;
-import java.util.concurrent.*;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author HaoHao
@@ -47,8 +48,7 @@ public class ThreadPoolTest {
         }
 
         Thread.sleep(1000);
-        Date date = new Date();
-        WeakReference<Date> data = new WeakReference(date);
+        THREAD_POOL_ONE.shutdownNow();
 
         System.out.println(THREAD_POOL_ONE.getLargestPoolSize());
     }
