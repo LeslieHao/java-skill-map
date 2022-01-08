@@ -3,6 +3,8 @@ package com.hh.skilljava.javabase.juc;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
 
@@ -92,6 +94,23 @@ public class FutureTest {
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        m4();
+        CompletableFuture<List<String>> future = CompletableFuture.supplyAsync((Supplier<List<String>>) () -> {
+            log.info("do get~");
+            return new ArrayList<>();
+        }).whenCompleteAsync((list, throwable) -> {
+            log.info("do whenCompleteAsync");
+            list.add("whenCompleteAsync");
+        }).whenCompleteAsync((list, throwable) -> {
+            log.info("do whenComplete~");
+            list.add("whenComplete");
+        }).whenCompleteAsync((list, throwable) -> {
+            log.info("do whenComplete~");
+            list.add("whenComplete");
+        }).whenCompleteAsync((list, throwable) -> {
+            log.info("do whenComplete~");
+            list.add("whenComplete");
+        });
+        List<String> list = future.get();
+        System.out.println("");
     }
 }
