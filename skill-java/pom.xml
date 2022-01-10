@@ -37,13 +37,18 @@
             <version>0.16</version>
         </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
 
 
-        <!--        <dependency>-->
-<!--            <groupId>org.apache.skywalking</groupId>-->
-<!--            <artifactId>scf-plugin</artifactId>-->
-<!--            <version>8.1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>scf-plugin</artifactId>
+            <version>8.1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>cglib</groupId>
@@ -119,11 +124,11 @@
             <version>2.3.2</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.bj58.spat</groupId>-->
-<!--            <artifactId>com.bj58.spat.wlock.client</artifactId>-->
-<!--            <version>1.0.8</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.bj58.spat</groupId>-->
+        <!--            <artifactId>com.bj58.spat.wlock.client</artifactId>-->
+        <!--            <version>1.0.8</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.redisson</groupId>
