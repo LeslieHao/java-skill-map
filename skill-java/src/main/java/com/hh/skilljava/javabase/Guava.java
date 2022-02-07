@@ -14,4 +14,8 @@ public class Guava {
         ComparisonChain.start();
     }
 
+    public static void main(String[] args) {
+        System.out.println(1170*1170*16);
+    }
+
 }

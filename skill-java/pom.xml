@@ -44,11 +44,11 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.apache.skywalking</groupId>
-            <artifactId>scf-plugin</artifactId>
-            <version>8.1.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.skywalking</groupId>-->
+<!--            <artifactId>scf-plugin</artifactId>-->
+<!--            <version>8.1.0</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>cglib</groupId>

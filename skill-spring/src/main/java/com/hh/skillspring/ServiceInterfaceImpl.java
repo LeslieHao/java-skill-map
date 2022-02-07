@@ -1,22 +1,18 @@
 package com.hh.skillspring;
 
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author HaoHao
  * @date 2021/9/27 2:35 下午
  */
 
-@Service
+@Slf4j
+//@Service("service")
 public class ServiceInterfaceImpl implements ServiceInterface {
-
-    @Resource
-    private BusinessComponent businessComponent;
 
     @Override
     public void say() {
-        businessComponent.doBiz();
+        log.info("111111");
     }
 }
