@@ -6,11 +6,25 @@ package com.hh.skilljava.javabase.juc;
  */
 public class TestVolatile {
 
-    private volatile String abc;
+    volatile boolean flag = true;
 
-    private void test(){
-        abc = "1";
-        System.out.println(abc);
-        abc = "2";
+    void test() {
+        System.out.println("start~");
+        while (flag) {
+
+        }
+        System.out.println("end~");
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        TestVolatile test = new TestVolatile();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                test.test();
+            }
+        }).start();
+        Thread.sleep(1000);
+        test.flag = false;
     }
 }
