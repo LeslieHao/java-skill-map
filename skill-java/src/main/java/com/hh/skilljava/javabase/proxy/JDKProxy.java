@@ -1,5 +1,10 @@
 package com.hh.skilljava.javabase.proxy;
 
+import sun.misc.ProxyGenerator;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -33,9 +38,16 @@ public class JDKProxy {
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         UserDaoImpl userDao = new UserDaoImpl();
         UserDao proxyInstance = (UserDao) JDKProxy.getProxyInstance(userDao);
         proxyInstance.save();
+
+        byte[] bytes = ProxyGenerator.generateProxyClass("123", new Class[]{userDao.getClass()});
+
+        File f = new File("/Users/haohao/Desktop/123.class");
+        FileOutputStream fout = new FileOutputStream(f);
+        fout.write(bytes);
+        fout.close();
     }
 }

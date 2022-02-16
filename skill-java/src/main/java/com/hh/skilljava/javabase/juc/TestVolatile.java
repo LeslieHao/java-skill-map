@@ -6,7 +6,7 @@ package com.hh.skilljava.javabase.juc;
  */
 public class TestVolatile {
 
-    volatile boolean flag = true;
+    boolean flag = true;
 
     void test() {
         System.out.println("start~");

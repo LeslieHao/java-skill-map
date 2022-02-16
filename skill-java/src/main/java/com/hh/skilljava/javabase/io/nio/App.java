@@ -33,13 +33,13 @@ public class App {
             }
         });
 
-        THREAD_POOL.execute(new Runnable() {
-            @SneakyThrows
-            @Override
-            public void run() {
-                Client client = new Client("127.0.0.1", 8000);
-                client.listen();
-            }
-        });
+        //THREAD_POOL.execute(new Runnable() {
+        //    @SneakyThrows
+        //    @Override
+        //    public void run() {
+        //        Client client = new Client("127.0.0.1", 8000);
+        //        client.listen();
+        //    }
+        //});
     }
 }

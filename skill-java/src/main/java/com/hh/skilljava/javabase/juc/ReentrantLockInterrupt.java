@@ -18,7 +18,7 @@ public class ReentrantLockInterrupt {
         t0.start();
         Thread.sleep(100);
         t1.start();
-        Thread.sleep(1);
+        Thread.sleep(1000);
         t1.interrupt();
     }
 
@@ -33,8 +33,8 @@ public class ReentrantLockInterrupt {
             lock.lock();
             try {
                 System.out.println(Thread.currentThread().getName());
-                Thread.sleep(2000);
-                System.out.println("线程" + Thread.currentThread() + "执行完sleep方法");
+                Thread.sleep(20000);
+                //System.out.println("线程" + Thread.currentThread() + "执行完sleep方法");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
@@ -48,10 +48,6 @@ public class ReentrantLockInterrupt {
         @SneakyThrows
         @Override
         public void run() {
-            int n = 0;
-            for (int i = 0; i <1000000 ; i++) {
-                n++;
-            }
             // 会去判断线程是否已经被标记为中断,如果已经被标记,则抛出异常
             lock.lockInterruptibly();
             try {

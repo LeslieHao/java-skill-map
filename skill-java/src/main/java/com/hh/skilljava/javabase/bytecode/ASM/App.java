@@ -19,6 +19,7 @@ public class App {
         // 处理
         ClassVisitor classVisitor = new ChangeClassVisitor(classWriter);
         classReader.accept(classVisitor, ClassReader.SKIP_DEBUG);
+
         byte[] data = classWriter.toByteArray();
 
         // 输出class 文件
