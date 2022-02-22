@@ -1,6 +1,5 @@
 package com.hh.skilljava.javabase.proxy;
 
-import sun.misc.ProxyGenerator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,11 +42,11 @@ public class JDKProxy {
         UserDao proxyInstance = (UserDao) JDKProxy.getProxyInstance(userDao);
         proxyInstance.save();
 
-        byte[] bytes = ProxyGenerator.generateProxyClass("123", new Class[]{userDao.getClass()});
+        //byte[] bytes = ProxyGenerator.generateProxyClass("123", new Class[]{userDao.getClass()});
 
         File f = new File("/Users/haohao/Desktop/123.class");
         FileOutputStream fout = new FileOutputStream(f);
-        fout.write(bytes);
+        //fout.write(bytes);
         fout.close();
     }
 }

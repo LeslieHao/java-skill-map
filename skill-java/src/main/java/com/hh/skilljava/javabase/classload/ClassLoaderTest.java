@@ -73,5 +73,12 @@ public class ClassLoaderTest extends ClassLoader {
         //System.out.println("class classloader: " + MyObject.class.getClassLoader());
         //System.out.println("同一类不同加载器,是否instanceof: " + (obj instanceof MyObject));
 
+        System.out.println("未加载");
+        System.in.read();
+        System.out.println(MyObject.class);
+        System.in.read();
+        MyObject myObject = new MyObject();
+        System.out.println("已初始化");
+        System.in.read();
     }
 }

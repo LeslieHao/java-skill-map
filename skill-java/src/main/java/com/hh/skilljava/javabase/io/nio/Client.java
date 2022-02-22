@@ -17,7 +17,6 @@ public class Client {
 
     private Selector selector;
 
-
     public Client(String ip, int port) throws IOException {
         System.out.println("client init,ip:" + ip + ",port:" + port);
         SocketChannel channel = SocketChannel.open();

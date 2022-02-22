@@ -52,7 +52,7 @@ public class BlockQueueTest {
     @Test
     public void testTake() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
-            blockingQueue.add(i);
+            blockingQueue.take();
         }
         // queue 空了会阻塞
         for (int i = 0; i < 11; i++) {
