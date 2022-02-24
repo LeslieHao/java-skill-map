@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 
+
     private final int cacheSize;
 
     public LRUCache(int cacheSize) {
@@ -28,8 +29,8 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
         lruCache.put(3, 3);
 
         // 为何了一个链表,在get 的时候吧数据移到链表队尾.
-        lruCache.get(2);
-        lruCache.get(1);
+        //lruCache.get(2);
+        //lruCache.get(1);
         lruCache.put(4, 4);
         System.out.println(lruCache);
 

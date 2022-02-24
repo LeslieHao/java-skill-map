@@ -1,6 +1,6 @@
-package com.hh.skilljava.develop.rocketmq;
+package com.hh.skilljava.develop.rocketmq.transaction;
 
-import org.apache.rocketmq.client.consumer.DefaultLitePullConsumer;
+import com.hh.skilljava.develop.rocketmq.Producer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -12,9 +12,9 @@ import java.util.List;
 
 /**
  * @author HaoHao
- * @date 2022/2/16 2:47 下午
+ * @date 2022/2/24 3:21 下午
  */
-public class Consumer {
+public class TtConsumer {
 
     public static void main(String[] args) throws MQClientException {
         /*
@@ -24,18 +24,18 @@ public class Consumer {
          */
 
         // push 模式,消费者与服务端必须建立长连接,响应快(其实也是基于pull 模式的长轮询)
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("group_name");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("group_name_t");
 
         /*
            wmb pull模式,不丢消息,消费完成才会commit offset,保证 at-least-once
          */
         // pull 模式,拉取模式可以每次拉取建立连接,但是实时性会差
-        DefaultLitePullConsumer pullConsumer = new DefaultLitePullConsumer("group_name");
+        //DefaultLitePullConsumer consumer = new DefaultLitePullConsumer("group_name_t");
 
         consumer.setNamesrvAddr(Producer.NAME_SERVER_ADDRESS);
 
         // 订阅
-        consumer.subscribe(Producer.topic, "*");
+        consumer.subscribe("ttttttt", "*");
 
         // 注册处理器
         consumer.registerMessageListener(new MessageListenerConcurrently() {
